@@ -1,7 +1,10 @@
 <ion-header>
-  <ion-toolbar slot="start" color="primary">
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
     <ion-title>
-      Setup Connection
+      Authentication
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,13 +16,13 @@
       <ion-card>
         <ion-card-content>
             <ion-item>
-            <ion-label position="floating">Enter IP</ion-label>
-            <ion-input type="text" id="input-ip" [(ngModel)]="inputIP"></ion-input>
+            <ion-label position="floating">Enter user</ion-label>
+            <ion-input type="text" id="input-user" [(ngModel)]="inputUser"></ion-input>
             </ion-item>
             <ion-item>
-            <ion-label position="floating">Enter port</ion-label>
-            <ion-input type="text" id="input-port" [(ngModel)]="inputPort"></ion-input>
-          </ion-item>
+            <ion-label position="floating">Enter password</ion-label>
+            <ion-input type="password" id="input-pass" [(ngModel)]="inputPassword"></ion-input>
+            </ion-item>
         </ion-card-content>
       </ion-card>
     </ion-col>
