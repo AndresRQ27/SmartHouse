@@ -4,3 +4,5 @@ ServerApp/node_modules/.bin/
 ServerApp/npm-debug.log
 
 ServerApp/node_modules/
+
+ServerApp/.eslintrc.js
