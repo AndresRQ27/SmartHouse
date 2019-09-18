@@ -23,25 +23,55 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size-md="6" offset-md="3">
-          <ion-button shape="round" size="large" color="warning" id="btn-light-room-1" (click)=onLightRoom1()>
+      <ion-col size-md="6" offset-md="3" align-self-center>
+          <ion-button expand=block shape="round" size="large" color="warning" id="btn-light-room-1" (click)=onLightRoom1()>
               <ion-icon slot="start" name="bulb" ></ion-icon>Room 1</ion-button>
-          <ion-button  shape="round" size="large" color="warning" id="btn-light-room-2" (click)=onLightRoom2()>
+          <ion-button   expand=block shape="round" size="large" color="warning" id="btn-light-room-2" (click)=onLightRoom2()>
               <ion-icon slot="start" name="bulb" ></ion-icon>Room 2</ion-button>
+          <ion-button  expand=block  shape="round" size="large" color="warning" id="btn-light-diner" (click)=onLightDiner()>
+              <ion-icon slot="start" name="bulb" ></ion-icon>Diner  </ion-button>
+          <ion-button   expand=block shape="round" size="large" color="warning" id="btn-light-kitchen" (click)=onLightKitchen()>
+            <ion-icon slot="start" name="bulb" ></ion-icon>Kitchen</ion-button>
+
+          <ion-button   expand=block shape="round" size="large" color="warning" id="btn-light-living-room" (click)=onLightLivingRoom()>
+            <ion-icon slot="start" name="bulb" ></ion-icon>Living Room</ion-button>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <ion-card>
+          <ion-card-content>
+            <ion-card-header text-center>
+              Door states
+            </ion-card-header>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-left>
+      <ion-col size-md="1" offset-md="5.5">
+        <ion-img src={{stateDoor1}}></ion-img>
+        <ion-img src={{stateDoor2}}></ion-img>
+        <ion-img src={{stateDoor3}}></ion-img>
+        <ion-img src={{stateDoor4}}></ion-img>
       </ion-col>
     </ion-row>
     <ion-row>
         <ion-col size-md="6" offset-md="3">
-            <ion-button  shape="round" size="large" color="warning" id="btn-light-kitchen" (click)=onLightKitchen()>
-                <ion-icon slot="start" name="bulb" ></ion-icon>Kitchen</ion-button>
-            <ion-button  shape="round" size="large" color="warning" id="btn-light-diner" (click)=onLightDiner()>
-                <ion-icon slot="start" name="bulb" ></ion-icon>Diner  </ion-button>
+          <ion-card>
+            <ion-card-content>
+              <ion-card-header text-center>
+                Webcam photo
+              </ion-card-header>
+            </ion-card-content>
+          </ion-card>
         </ion-col>
-    </ion-row>
-    <ion-row>
+      </ion-row>
+      <ion-row>
         <ion-col size-md="6" offset-md="3">
-            <ion-button expand="block" shape="round" size="large" color="warning" id="btn-light-living-room" (click)=onLightLivingRoom()>
-        <ion-icon slot="start" name="bulb" ></ion-icon>Living Room</ion-button>
+
+          <ion-button expand="block" shape="round" size="large" color="success" id="btn-garden-photo" (click)=onGardenPhoto()>
+              <ion-icon slot="start" name="camera" ></ion-icon>Garden Photo</ion-button>
         </ion-col>
       </ion-row>
   </ion-grid>

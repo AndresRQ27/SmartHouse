@@ -3,6 +3,7 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 const path = require('path');
+const exec = require('child_process').exec;
 
 //  var for the user
 const hostname = '0.0.0.0';
@@ -28,14 +29,18 @@ http.createServer((req, res) => {
 
 console.log(`Server running at http://${hostname}:${port}/`);
 
+
+
 /**
  * Function that returns the homepage
  * Query example: http://127.0.0.1:8080/image/?image=msi.png
  * @param {*} req: request parameter
  * @param {*} res: response parameter
  */
-function image(req, res) {
+async function image(req, res) {
   //  read the image using fs and send the image content back in the response
+
+  exec("fswebcam -r 640x480 images/image.png", function(error, stdout, stderr){});
   fs.readFile(path.resolve(__dirname, `images/image.png`), function(err, content) {
     if (err) {
       res.writeHead(400, {'Content-type': 'text/html'});

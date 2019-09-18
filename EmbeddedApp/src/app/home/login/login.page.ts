@@ -37,7 +37,6 @@ export class LoginPage {
     this.connectionServices.setPassword(this.inputPassword);
 
     this.router.navigate(['/control']);
-    //window.location.href = "http://192.168.43.200:8080/image/?image=Resultado.png";
     console.log('User:', this.connectionServices.getUser(), 'Pass:', this.connectionServices.getPassword());
   
   }
