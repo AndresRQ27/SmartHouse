@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class ConnectionService {
   private port: string;
   private ip: string;
+  private user: string;
+  private password: string;
 
   constructor() { }
 
@@ -20,6 +22,18 @@ export class ConnectionService {
   }
   getIP(){
     return this.ip;
+  }
+  setUser(User: string){
+    this.user = User;
+  }
+  getUser(){
+    return this.user;
+  }
+  setPassword(Password: string){
+    this.password = Password;
+  }
+  getPassword(){
+    return this.password;
   }
 
 }
