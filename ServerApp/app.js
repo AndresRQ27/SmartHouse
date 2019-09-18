@@ -4,14 +4,14 @@ const url = require('url');
 const fs = require('fs');
 
 //  var for the user
-const hostname = '127.0.0.1';
+const hostname = '0.0.0.0';
 const port = 8080;
 const imagePath = '/home/andres/Downloads/';
 
 //  create the http server accepting requests to port 8080
 http.createServer((req, res) => {
   const urlParsed = url.parse(req.url);
-  const pathArray = urlParsed.pathname.split('/');
+  const pathArray = urlParsed.pathname.split('/'); // First and last items are empty
 
   //  direct the request to appropriate function
   switch (pathArray[1]) {

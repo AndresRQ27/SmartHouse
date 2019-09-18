@@ -1,10 +1,10 @@
 {
-  "name": "test2",
+  "name": "server-app",
   "version": "1.0.0",
   "description": "test server in node.js",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js"
+    "start": "node app.js"
   },
   "author": "Andres Ramirez Quiros",
   "license": "ISC",
