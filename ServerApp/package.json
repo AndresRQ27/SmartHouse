@@ -1,0 +1,15 @@
+{
+  "name": "test2",
+  "version": "1.0.0",
+  "description": "test server in node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "author": "Andres Ramirez Quiros",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
