@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "OSApp_2",
+  "appName": "EmbeddedApp",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TasksPage } from './tasks.page';
-
-
+import { ControlPage } from './control.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: TasksPage
+    component: ControlPage
   }
 ];
 
@@ -21,12 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    FormsModule,
-    ReactiveFormsModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [TasksPage]
+  declarations: [ControlPage]
 })
-export class TasksPageModule {
-
-}
+export class ControlPageModule {}

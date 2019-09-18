@@ -4,9 +4,9 @@ const url = require('url');
 const fs = require('fs');
 
 //  var for the user
-const hostname = '127.0.0.1';
+const hostname = '0.0.0.0';
 const port = 8080;
-const imagePath = '/home/andres/Downloads/';
+const imagePath = '/home/lionheart/Pictures/';
 
 //  create the http server accepting requests to port 8080
 http.createServer((req, res) => {
@@ -44,7 +44,7 @@ function image(req, res) {
       res.end('No such image');
     } else {
       //  specify the content type in the response will be an image
-      res.writeHead(200, {'Content-type': 'image/jpg'});
+      res.writeHead(200, {'Content-type': 'image/png'});
       res.end(content);
     }
   });

@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'tasks', loadChildren: './tasks/tasks.module#TasksPageModule' },
   { path: 'success', loadChildren: './tasks/success/success.module#SuccessPageModule' },
   { path: 'login', loadChildren: './home/login/login.module#LoginPageModule' },
+  { path: 'control', loadChildren: './control/control.module#ControlPageModule' },
 ];
 
 @NgModule({
