@@ -5,3 +5,7 @@ ServerApp/npm-debug.log
 ServerApp/node_modules/
 
 ServerApp/.eslintrc.js
+
+*build*
+
+*.DS_Store*
