@@ -58,6 +58,7 @@ function homepage(req, res) {
 async function image(req, res) {
   //  read the image using fs and send the image content back in the response
   exec('fswebcam -r 640x480 images/image.png', (error, stdout, stderr) => {});
+  await sleep(2500);
   fs.readFile(path.resolve(__dirname, `images/image.png`), (err, content) => {
     if (err) {
       res.writeHead(400, {'Content-type': 'text/html'});
@@ -117,7 +118,16 @@ function switchLed(room) {
     console.log('Invalid room');
   } else { // Executes the script
     console.log('Room number: ', roomNumber, roomBool);
-    exec(`../GPIO/build/house_controller -l ${roomNumber} ${roomBool}`,
+    exec(`/user/bin/house_controller -l ${roomNumber} ${roomBool}`,
         (error, stdout, stderr) => {});
   }
+}
+
+/**
+ * Function that sleeps for ms time
+ * @param {*} ms: time to sleep
+ * @return {*} promise of the timeout
+ */
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
