@@ -116,7 +116,8 @@ function switchLed(room) {
   if (roomNumber === -1) { // Check if invalid room
     console.log('Invalid room');
   } else { // Executes the script
-    exec(`../GPIO/house_controller -l ${roomNumber} ${roomBool}`,
+    console.log('Room number: ', roomNumber, roomBool);
+    exec(`../GPIO/build/house_controller -l ${roomNumber} ${roomBool}`,
         (error, stdout, stderr) => {});
   }
 }
