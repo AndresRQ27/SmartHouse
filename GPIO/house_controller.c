@@ -22,9 +22,9 @@ int main(int argc, char **argv) {
                 printf("There are only 5 lights ranging from index 0 to 4");
                 return -1;
             }
-            if (strcmp(argv[3], "0") == 0) {
+            if (strcmp(argv[3], "0") == 0 || strcmp(argv[3], "false") == 0 ) {
                 to_write = 0;
-            } else if (strcmp(argv[3], "1") == 0) {
+            } else if (strcmp(argv[3], "1") == 0 || strcmp(argv[3], "true") == 0 ) {
                 to_write = 1;
             } else {
                 printf("Only 0 and 1 are valid states");
