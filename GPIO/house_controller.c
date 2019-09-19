@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
             } else if (strcmp(argv[2], "4") == 0) {
                 pin_number = 26;
             } else {
-                printf("There are only 5 lights ranging from index 0 to 4");
+                printf("There are only 5 lights ranging from index 0 to 4\n");
                 return -1;
             }
             if (strcmp(argv[3], "0") == 0 || strcmp(argv[3], "false") == 0 ) {
@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
             } else if (strcmp(argv[3], "1") == 0 || strcmp(argv[3], "true") == 0 ) {
                 to_write = 1;
             } else {
-                printf("Only 0 and 1 are valid states");
+                printf("Only 0 and 1 are valid states\n");
                 return -1;
             }
 
@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
             } else if (strcmp(argv[2], "3") == 0) {
                 pin_number = 21;
             } else {
-                printf("There are only 4 doors ranging from index 0 to 3");
+                printf("There are only 4 doors ranging from index 0 to 3\n");
                 return -1;
             }
 
