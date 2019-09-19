@@ -9,7 +9,7 @@ const app = express();
 //  var for the user
 const hostname = '0.0.0.0';
 const port = 8080;
-const pathController = '../GPIO/build/house_controller';
+const pathController = 'house_controller';
 
 let ledDining = false;
 let ledKitchen = false;
@@ -35,7 +35,9 @@ app.get('/image', (req, res) => {
 });
 
 //  create the http server accepting requests to port 8080
-app.listen(port, () => `Server running at http://${hostname}:${port}/`);
+app.listen(port, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
 
 /**
  * Function that returns the param
@@ -45,7 +47,7 @@ app.listen(port, () => `Server running at http://${hostname}:${port}/`);
  */
 async function image(req, res) {
   //  read the image using fs and send the image content back in the response
-  exec('fswebcam -r 640x480 images/image.png', (error, stdout, stderr) => {});
+  exec('fswebcam -r 640x480 llo.png', (error, stdout, stderr) => {});
   await sleep(2500);
   fs.readFile(path.resolve(__dirname, `images/image.png`), (err, content) => {
     if (err) {
@@ -115,11 +117,7 @@ function updateData(req, res) {
 function updateDoors(req, res) {
   //  First door
   let dir = exec(`${pathController} -d 0`,
-      (error, stdout, stderr) => {
-        console.log(error.code);
-        console.log(error.status);
-        console.log(stdout);
-      }
+      (error, stdout, stderr) => {}
   );
   dir.on('exit', (code) => {
     if (code === 1) {
@@ -133,11 +131,7 @@ function updateDoors(req, res) {
 
   //  Second door
   dir = exec(`${pathController} -d 1`,
-      (error, stdout, stderr) => {
-        console.log(error.code);
-        console.log(error.status);
-        console.log(stdout);
-      }
+      (error, stdout, stderr) => {}
   );
   dir.on('exit', (code) => {
     if (code === 1) {
@@ -151,11 +145,7 @@ function updateDoors(req, res) {
 
   //  Third door
   dir = exec(`${pathController} -d 2`,
-      (error, stdout, stderr) => {
-        console.log(error.code);
-        console.log(error.status);
-        console.log(stdout);
-      }
+      (error, stdout, stderr) => {}
   );
   dir.on('exit', (code) => {
     if (code === 1) {
@@ -169,11 +159,7 @@ function updateDoors(req, res) {
 
   //  Fourth door
   dir = exec(`${pathController} -d 3`,
-      (error, stdout, stderr) => {
-        console.log(error.code);
-        console.log(error.status);
-        console.log(stdout);
-      }
+      (error, stdout, stderr) => {}
   );
   dir.on('exit', (code) => {
     if (code === 1) {
@@ -181,7 +167,7 @@ function updateDoors(req, res) {
     } else if (code === 0) {
       doorStatus[3] = false;
     } else {
-      console.log('Unexpected -1 in door3');    
+      console.log('Unexpected -1 in door3');
     }
   });
 
