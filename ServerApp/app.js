@@ -16,6 +16,7 @@ let ledKitchen = false;
 let ledLiving = false;
 let ledBed1 = false;
 let ledBed2 = false;
+let doorStatus = [false, false, false, false];
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -62,7 +63,8 @@ async function image(req, res) {
 /**
  * Function that returns the param
  * It can also toggle the param values by using:
- * http://0.0.0.0:8080/?param=kitchen
+ * http://0.0.0.0:8080/?led=kitchen
+ * http://0.0.0.0:8080/?update
  * @param {*} req: request parameter
  * @param {*} res: response parameter
  */
@@ -89,7 +91,7 @@ function param(req, res) {
  * @param {*} res: response parameter
  */
 function updateData(req, res) {
-  //  const returnedArray = updateDoors(req, res);
+  const doorStatus = updateDoors(req, res);
 
   res.json({
     'bed1': ledBed1,
@@ -97,14 +99,10 @@ function updateData(req, res) {
     'kitchen': ledKitchen,
     'living': ledLiving,
     'dining': ledDining,
-    //  'door1': returnedArray[0],
-    //  'door2': returnedArray[1],
-    //  'door3': returnedArray[2],
-    //  'door4': returnedArray[3],
-    'door1': false,
-    'door2': true,
-    'door3': false,
-    'door4': false,
+    'door1': doorStatus[0],
+    'door2': doorStatus[1],
+    'door3': doorStatus[2],
+    'door4': doorStatus[3],
   });
 }
 
@@ -112,25 +110,23 @@ function updateData(req, res) {
  * Function that gets the values of the doors
  * @param {*} req: request parameter
  * @param {*} res: response parameter
- * @return {Array} returnedArray
+ * @return {Array} doorStatus
  */
 function updateDoors(req, res) {
-  const returnedArray = [];
-
   //  First door
   let dir = exec(`${pathController} -d 0`,
       (error, stdout, stderr) => {
-        console.log(error);
+        console.log(error.code);
+        console.log(error.status);
         console.log(stdout);
       }
   );
   dir.on('exit', (code) => {
     if (code === 1) {
-      returnedArray.push(true);
+      doorStatus[0] = true;
     } else if (code === 0) {
-      returnedArray.push(false);
+      doorStatus[0] = false;
     } else {
-      returnedArray.push(false);
       console.log('Unexpected -1 in door0');
     }
   });
@@ -138,17 +134,17 @@ function updateDoors(req, res) {
   //  Second door
   dir = exec(`${pathController} -d 1`,
       (error, stdout, stderr) => {
-        console.log(error);
+        console.log(error.code);
+        console.log(error.status);
         console.log(stdout);
       }
   );
   dir.on('exit', (code) => {
     if (code === 1) {
-      returnedArray.push(true);
+      doorStatus[1] = true;
     } else if (code === 0) {
-      returnedArray.push(false);
+      doorStatus[1] = false;
     } else {
-      returnedArray.push(false);
       console.log('Unexpected -1 in door1');
     }
   });
@@ -156,40 +152,40 @@ function updateDoors(req, res) {
   //  Third door
   dir = exec(`${pathController} -d 2`,
       (error, stdout, stderr) => {
-        console.log(error);
+        console.log(error.code);
+        console.log(error.status);
         console.log(stdout);
       }
   );
   dir.on('exit', (code) => {
     if (code === 1) {
-      returnedArray.push(true);
+      doorStatus[2] = true;
     } else if (code === 0) {
-      returnedArray.push(false);
+      doorStatus[2] = false;
     } else {
-      returnedArray.push(false);
       console.log('Unexpected -1 in door2');
     }
   });
 
-  //  Third door
+  //  Fourth door
   dir = exec(`${pathController} -d 3`,
       (error, stdout, stderr) => {
-        console.log(error);
+        console.log(error.code);
+        console.log(error.status);
         console.log(stdout);
       }
   );
   dir.on('exit', (code) => {
     if (code === 1) {
-      returnedArray.push(true);
+      doorStatus[3] = true;
     } else if (code === 0) {
-      returnedArray.push(false);
+      doorStatus[3] = false;
     } else {
-      returnedArray.push(false);
-      console.log('Unexpected -1 in door3');
+      console.log('Unexpected -1 in door3');    
     }
   });
 
-  return returnedArray;
+  return doorStatus;
 }
 
 /**
@@ -267,4 +263,3 @@ function switchLed(req, res, roomNumber, roomBool) {
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-

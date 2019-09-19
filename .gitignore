@@ -9,3 +9,4 @@ ServerApp/.eslintrc.js
 *build*
 
 *.DS_Store*
+SmartHouse.code-workspace
