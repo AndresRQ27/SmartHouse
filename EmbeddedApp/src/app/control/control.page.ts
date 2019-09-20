@@ -10,6 +10,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 })
 export class ControlPage{
 
+  houseModel : string = 'assets/house_diagram.png';
   closedDoor : string = 'assets/closed_door.png';
   openedDoor : string = 'assets/open_door.png';
   lightOn : string = 'warning';
