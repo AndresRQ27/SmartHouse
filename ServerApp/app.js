@@ -244,7 +244,11 @@ function switchLed(req, res, roomNumber, roomBool) {
     console.log('Room number: ', roomNumber, roomBool);
 
     exec(`${pathController} -l ${roomNumber} ${roomBool}`,
-        (error, stdout, stderr) => {}
+        (error, stdout, stderr) => {
+          console.log(error);
+          console.log(stdout);
+          console.log(stderr);
+        }
     );
 
     res.sendStatus(200);
