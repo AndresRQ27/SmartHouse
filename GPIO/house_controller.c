@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
       pinExport(pin_number);
       pinMode(pin_number, pin_mode);
       int to_return = digitalWrite(pin_number, to_write);
-      pinUnexport(pin_number);
+      // pinUnexport(pin_number);
       return to_return;
     }
   } else if (argc == 3) {
@@ -57,7 +57,7 @@ int main(int argc, char **argv) {
       pinExport(pin_number);
       pinMode(pin_number, pin_mode);
       to_return = digitalRead(pin_number);
-      pinUnexport(pin_number);
+      // pinUnexport(pin_number);
       return to_return;
     }
   }
