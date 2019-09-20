@@ -1,6 +1,5 @@
 //  include the http and url module
 const url = require('url');
-const fs = require('fs');
 const path = require('path');
 const exec = require('child_process').exec;
 const express = require('express');
@@ -18,6 +17,9 @@ let ledBed1 = false;
 let ledBed2 = false;
 let doorStatus = [false, false, false, false];
 
+const admin = 'admin';
+const adminPassword = 'admin';
+
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers',
@@ -30,8 +32,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/image', (req, res) => {
-  res.status(200);
-  image(req, res);
+  imageFile(req, res);
 });
 
 //  create the http server accepting requests to port 8080
@@ -41,32 +42,11 @@ app.listen(port, () => {
 
 /**
  * Function that returns the param
- * Query example: http://0.0.0.0:8080/image/
- * @param {*} req: request parameter
- * @param {*} res: response parameter
- */
-async function image(req, res) {
-  //  read the image using fs and send the image content back in the response
-  exec('fswebcam -r 640x480 images/image.png', (error, stdout, stderr) => {});
-  await sleep(2500);
-  fs.readFile(path.resolve(__dirname, `images/image.png`), (err, content) => {
-    if (err) {
-      res.writeHead(400, {'Content-type': 'text/html'});
-      console.log(err);
-      res.end('No such image');
-    } else {
-      //  specify the content type in the response will be an image
-      res.writeHead(200, {'Content-type': 'image/png'});
-      res.end(content);
-    }
-  });
-}
-
-/**
- * Function that returns the param
  * It can also toggle the param values by using:
+ * http://0.0.0.0:8080/image
  * http://0.0.0.0:8080/?led=kitchen
  * http://0.0.0.0:8080/?update
+ * http://0.0.0.0:8080/?user=admin&&password=admin
  * @param {*} req: request parameter
  * @param {*} res: response parameter
  */
@@ -75,15 +55,53 @@ function param(req, res) {
   const query = url.parse(req.url, true).query;
   const ledRoom = query.led;
   const update = query.update;
+  const user = query.user;
+  const password = query.password;
 
   if (typeof ledRoom !== 'undefined') { //  Led is in the parameters
     console.log('Led parameter detected');
     detectRoom(req, res, ledRoom);
   } else if (typeof update !== 'undefined') {
     updateData(req, res);
+  } else if (typeof user !== 'undefined' &&
+    typeof password !== 'undefined') {
+    authentication(req, res, user, password);
   } else {
     console.log('Invalid param');
     res.sendStatus(400);
+  }
+}
+
+/**
+ * Function that returns the param
+ * @param {*} req: request parameter
+ * @param {*} res: response parameter
+ */
+async function imageFile(req, res) {
+  //  read the image using fs and send the image content back in the response
+  exec('fswebcam -r 640x480 images/image.png', (error, stdout, stderr) => {});
+  await sleep(2500);
+  res.sendFile(path.resolve(__dirname, `images/image.png`));
+}
+
+/**
+ * Function that authenticates
+ * @param {*} req: request parameter
+ * @param {*} res: response parameter
+ * @param {*} user: user for the auth
+ * @param {*} password: password for the auth
+ */
+function authentication(req, res, user, password) {
+  if (user === admin && password === adminPassword) {
+    console.log('Authenticated');
+    res.json({
+      'auth': true,
+    });
+  } else {
+    console.log('Not authenticated');
+    res.json({
+      'auth': false,
+    });
   }
 }
 
