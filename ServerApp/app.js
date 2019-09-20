@@ -47,7 +47,7 @@ app.listen(port, () => {
  */
 async function image(req, res) {
   //  read the image using fs and send the image content back in the response
-  exec('fswebcam -r 640x480 llo.png', (error, stdout, stderr) => {});
+  exec('fswebcam -r 640x480 images/image.png', (error, stdout, stderr) => {});
   await sleep(2500);
   fs.readFile(path.resolve(__dirname, `images/image.png`), (err, content) => {
     if (err) {
