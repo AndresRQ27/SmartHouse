@@ -124,8 +124,6 @@ function updateDoors(req, res) {
       doorStatus[0] = true;
     } else if (code === 0) {
       doorStatus[0] = false;
-    } else {
-      console.log('Unexpected -1 in door0');
     }
   });
 
@@ -138,8 +136,6 @@ function updateDoors(req, res) {
       doorStatus[1] = true;
     } else if (code === 0) {
       doorStatus[1] = false;
-    } else {
-      console.log('Unexpected -1 in door1');
     }
   });
 
@@ -152,8 +148,6 @@ function updateDoors(req, res) {
       doorStatus[2] = true;
     } else if (code === 0) {
       doorStatus[2] = false;
-    } else {
-      console.log('Unexpected -1 in door2');
     }
   });
 
@@ -166,8 +160,6 @@ function updateDoors(req, res) {
       doorStatus[3] = true;
     } else if (code === 0) {
       doorStatus[3] = false;
-    } else {
-      console.log('Unexpected -1 in door3');
     }
   });
 
