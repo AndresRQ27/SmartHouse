@@ -31,12 +31,11 @@ export class ControlPage{
 
   constructor( private connectionServices: ConnectionService, public http: HttpClient) {
     this.id = setInterval(() => {
-      console.log('Holi');
 
       const params = new HttpParams().set('update', '');
       this.http.get('http://' + this.connectionServices.getIP() + ':' + 
       this.connectionServices.getPort() + '/', {params}).subscribe((data:any) => {
-        console.log(data);
+        //console.log(data);
         this.dataObject = data;
 
         this.stateRoom1 = this.dataObject['bed1'] ? this.lightOn : this.lightOff;
@@ -56,7 +55,6 @@ export class ControlPage{
   }
 
   onLightRoom1(){
-    clearInterval(this.id);
     console.log('Light room 1');
     this.requestGet('bed1');
   }
